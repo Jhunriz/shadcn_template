@@ -1,12 +1,12 @@
 import './App.css'
-import { Dashboard } from './Layout/Dashboard'
+import MainLayout from './Layout/MainLayout'
 
 
 function App() {
 
   return (
     <>
-        <Dashboard></Dashboard>
+        <MainLayout />
     </>
   )
 }
