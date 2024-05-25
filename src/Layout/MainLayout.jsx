@@ -27,11 +27,12 @@ import {
     AvatarFallback,
     AvatarImage,
   } from "@/components/ui/avatar"
+import { Link } from "react-router-dom"
   
-  export default function MainLayout() {
+  export default function MainLayout({ children }) {
   
     const navicon = [
-      {icon: Home, title: "Dashboard", badge: 1 },
+      {icon: Home, title: "Dashboard", badge: 1, link: "/dashboard" },
       {icon: ShoppingCart, title: "Cart"},
       {icon: Package, title: "Items" },
       {icon: Users, title: "Users"},
@@ -43,10 +44,10 @@ import {
         <div className="hidden border-r bg-muted/40 md:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
             <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-              <a href="/" className="flex items-center gap-2 font-semibold">
+              <Link href="/" className="flex items-center gap-2 font-semibold">
                 <p>Logo</p>
                 <span className="">Title</span>
-              </a>
+              </Link>
               <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
                 <span className="bg-green-500"></span>
                 <Bell className="h-4 w-4" />
@@ -55,8 +56,7 @@ import {
             <div className="flex-1">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                 {navicon.map((item, i) => (
-                      <a
-                      href="#"
+                      <Link to={item.link}
                       className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted" key={i}
                     >
                       <item.icon className="h-4 w-4" />
@@ -64,7 +64,7 @@ import {
                       {/* <Badge className={item.badge ? "block" : "hidden"}>
                         {item.badge}
                       </Badge> */}
-                    </a>
+                    </Link>
                     
                 ))}
               </nav>
@@ -86,24 +86,24 @@ import {
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col">
                 <nav className="grid gap-2 text-lg font-medium">
-                  <a
+                  <Link
                     href="#"
                     className="flex items-center gap-2 text-lg font-semibold"
                   >
                     <Package2 className="h-6 w-6" />
                     <span className="sr-only">Acme Inc</span>
-                  </a>
+                  </Link>
                   {navicon.map((item, i) => (
-                        <a
-                        href="#"
-                        className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground" key={i}
-                      >
-                        <item.icon className="h-5 w-5" />
-                        {item.title}
-                          <Badge className={item.badge ? "block" : "hidden"}>
-                        {item.badge}
-                        </Badge>
-                      </a>
+                        <Link
+                          href="#"
+                          className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground" key={i}
+                        >
+                          <item.icon className="h-5 w-5" />
+                          {item.title}
+                            <Badge className={item.badge ? "block" : "hidden"}>
+                          {item.badge}
+                          </Badge>
+                        </Link>
                   ))}
                 </nav>
               </SheetContent>
@@ -138,7 +138,8 @@ import {
             </DropdownMenu>
           </header>
           <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-            <div className="flex items-center">
+            {children}
+            {/* <div className="flex items-center">
               <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
             </div>
             <div
@@ -153,7 +154,7 @@ import {
                 </p>
                 <Button className="mt-4">Add Product</Button>
               </div>
-            </div>
+            </div> */}
           </main>
         </div>
       </div>
