@@ -14,7 +14,7 @@ function App() {
        <Routes>
          <Route path='/' element={<MainLayout/>} />
          <Route path='/dashboard' element={<Dashboard/>} />
-         <Route path='/restricted404' element={<Restricted404/>} />
+         <Route path='*' element={<Restricted404/>} />
        </Routes>
     </>
   )
